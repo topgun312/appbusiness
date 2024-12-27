@@ -39,3 +39,10 @@ MANIFEST
 logs/
 upload/
 certs/
+
+grafana/config.monitoring
+csv/
+pdf/
+plugins/
+png/
+grafana.db

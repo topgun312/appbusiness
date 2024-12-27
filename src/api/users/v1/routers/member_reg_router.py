@@ -2,8 +2,8 @@ from fastapi import APIRouter, BackgroundTasks, Depends, status
 from fastapi_cache.decorator import cache
 from pydantic import UUID4
 
-from schemas.invite_schema import InviteCode
-from schemas.secret_schema import CreateSecretRequest
+from src.schemas.invite_schema import InviteCode
+from src.schemas.secret_schema import CreateSecretRequest
 from src.api.users.v1.auth_utils.validate import get_current_admin_auth_user
 from src.api.users.v1.service import MemberService
 from src.schemas.account_schema import CreateAccountRequest

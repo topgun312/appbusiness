@@ -19,6 +19,7 @@ gunicorn = "^23.0.0"
 pyjwt = "^2.9.0"
 loguru = "^0.7.2"
 fastapi = {extras = ["all"], version = "^0.115.0"}
+prometheus-fastapi-instrumentator = "^7.0.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.3"

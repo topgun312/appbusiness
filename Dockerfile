@@ -5,10 +5,12 @@ RUN mkdir /fastapi_app
 
 WORKDIR /fastapi_app
 
-COPY pyproject.toml .
+RUN pip install poetry
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-ansi
 
 COPY . .
 

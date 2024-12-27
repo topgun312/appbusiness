@@ -10,7 +10,7 @@ from fastapi_cache.backends.redis import RedisBackend
 from loguru import logger
 from redis import asyncio as aioredis
 
-from config import settings
+from src.config import settings
 from src.api import router
 from src.api.structure.v1.routers import struct_router
 from src.api.tasks.v1.routers import task_router
@@ -21,7 +21,8 @@ from src.api.users.v1.routers import (
     work_data_router,
 )
 from src.metadata import DESCRIPTION, TAG_METADATA, TITLE, VERSION
-
+from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator:
@@ -74,3 +75,11 @@ def create_fastapi_app():
 
 
 app = create_fastapi_app()
+Instrumentator().instrument(app).expose(app)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
